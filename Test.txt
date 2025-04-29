@@ -1,0 +1,84 @@
+curl -X POST http://localhost:4000/api/users/register 
+   "Content-Type: application/json" 
+  '{
+    "username": "ivan123",
+    "email": "ivan@example.com",
+    "password": "securepassword",
+    "role": "employer",
+    "company": "TechCorp"
+  }'
+
+token employer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODExMjA0ZGI1YjYwNjViNjkxNmM4OTkiLCJpYXQiOjE3NDU5NTI4NDUsImV4cCI6MTc0NjU1NzY0NX0.TmhEOmZWcFBfc4WkSSFvK6Q8XNlreVgTuOiummEiD28
+token jobseeker: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODExMjYwMWI1YjYwNjViNjkxNmM4YTUiLCJpYXQiOjE3NDU5NTQzMDUsImV4cCI6MTc0NjU1OTEwNX0.IVl6MBlCawT7hvbGec_AsQEEdCKn_2Q4Y_i3KqgIsFs
+token admin: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODExMjY2MmI1YjYwNjViNjkxNmM4YTgiLCJpYXQiOjE3NDU5NTQ0MDIsImV4cCI6MTc0NjU1OTIwMn0.dTsk_4Hz08ENvGcjf2Ul8lC2Ft13qm6BVEdPCnYO-vw
+
+ curl -X GET http://localhost:4000/api/interviews \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2ZiNjMxNWViYmU1NmQ5OGNjYWNmNDQiLCJpYXQiOjE3NDQ1MjgyMTIsImV4cCI6MTc0NTEzMzAxMn0.9U_iPR-Zfx0XNWuB5JtS0UB-2WHs32BcHFy13e5A-J0"
+
+
+curl -X GET "http://localhost:4000/api/jobs/67fbeaeb2b9c24dd3696f431"
+
+
+
+
+curl -X POST http://localhost:4000/api/jobs \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2ZiNjJiOGViYmU1NmQ5OGNjYWNmNDAiLCJpYXQiOjE3NDQ1MjgwOTIsImV4cCI6MTc0NTEzMjg5Mn0.oxNuTTe_rqh9pSK3bliKQTXKjqbDWvUWwUm9VDKt6wM" \
+-H "Content-Type: application/json" \
+-d '{
+  "title": "Backend Developer",
+  "company": "My Company",
+  "description": "Awesome opportunity",
+  "requirements": "Node.js, MongoDB",
+  "salary": 6000,
+  "location": "Remote",
+  "type": "full-time",
+  "category": "Software",
+  "experience": "entry",
+  "expiresAt": "2025-12-01T00:00:00Z"
+}'
+
+
+
+curl -X GET http://localhost:4000/api/interviews/slots/67fb6547ebbe56d98ccacf4e  - get avalaible slots
+
+
+curl -X POST http://localhost:4000/api/resumes \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2ZiNjMxNWViYmU1NmQ5OGNjYWNmNDQiLCJpYXQiOjE3NDQ1MjgyMTIsImV4cCI6MTc0NTEzMzAxMn0.9U_iPR-Zfx0XNWuB5JtS0UB-2WHs32BcHFy13e5A-J0" \
+  -F "resume=@/home/yordan/bazi_danni_kursov_proekt/ss.zad3.jpg" \
+  -F "fullName=John Doe" \
+  -F "email=john@example.com" \
+  -F "phone=123456789" \
+  -F "address=123 Main St" \
+  -F "summary=Experienced software engineer" \
+  -F "isPublic=true" \
+  -F "education=[{\"institution\""Uni A\",\"degree\""BSc\",\"field\""CS\",\"startYear\":2015,\"endYear\":2019}]" \
+  -F "experience=[{\"company\""Company A\",\"position\""Dev\",\"startDate\""2020-01-01\",\"endDate\""2022-01-01\",\"description\""Worked on backend\"}]" \
+  -F "skills=[\"JavaScript\",\"Node.js\",\"MongoDB\"]" \
+  -F "languages=[\"English\",\"German\"]" \
+  -F "certifications=[\"AWS Certified\"]" \
+  -F "references=[{\"name\""Jane Smith\",\"contact\""jane@example.com\"}]"
+
+
+
+curl -X GET http://localhost:4000/api/resumes \
+  -H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2ZiNjJiOGViYmU1NmQ5OGNjYWNmNDAiLCJpYXQiOjE3NDQ1MjgwOTIsImV4cCI6MTc0NTEzMjg5Mn0.oxNuTTe_rqh9pSK3bliKQTXKjqbDWvUWwUm9VDKt6wM"
+
+
+
+curl -X POST http://localhost:4000/api/interviews \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2ZiNjMxNWViYmU1NmQ5OGNjYWNmNDQiLCJpYXQiOjE3NDQ1MjgyMTIsImV4cCI6MTc0NTEzMzAxMn0.9U_iPR-Zfx0XNWuB5JtS0UB-2WHs32BcHFy13e5A-J0" \
+  -d '{
+    "job": "67fb6547ebbe56d98ccacf4e",
+    "resume": "67fb6b8abfce3f19a0b3d691",
+    "scheduledDate": "2025-04-20T10:00:00.000Z",
+    "duration": 30,
+    "location": "Online"
+  }'
+
+curl -X GET http://localhost:4000/api/interviews/slots/67fb6547ebbe56d98ccacf4e
+
+
+curl -X GET http://localhost:4000/api/stats \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2ZiNjIwYWViYmU1NmQ5OGNjYWNmM2EiLCJpYXQiOjE3NDQ1Mjc5MjIsImV4cCI6MTc0NTEzMjcyMn0.XxrieLQnP8JZBCav8z-MnN9qmrPAk8IZc9WqZkWY93w"
+localhost
